@@ -1,6 +1,6 @@
 export MODEL_NAME="models/Diffusion_Transformer/CogVideoX-Fun-2b-InP"
-export DATASET_NAME="datasets/internal_datasets/"
-export DATASET_META_NAME="datasets/internal_datasets/metadata.json"
+export DATASET_NAME="datasets/"
+export DATASET_META_NAME="datasets/validation/metadata.json"
 export NCCL_IB_DISABLE=1
 export NCCL_P2P_DISABLE=1
 NCCL_DEBUG=INFO
@@ -11,7 +11,7 @@ accelerate launch --mixed_precision="bf16" scripts/train_lora.py \
   --train_data_dir=$DATASET_NAME \
   --train_data_meta=$DATASET_META_NAME \
   --image_sample_size=1280 \
-  --video_sample_size=256 \
+  --video_sample_size=200 \
   --token_sample_size=512 \
   --video_sample_stride=3 \
   --video_sample_n_frames=49 \
