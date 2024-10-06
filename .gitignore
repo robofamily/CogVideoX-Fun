@@ -9,6 +9,7 @@ asset*
 __pycache__/
 *.py[cod]
 *$py.class
+*.jpg
 
 # C extensions
 *.so

@@ -1,6 +1,6 @@
-export MODEL_NAME="models/Diffusion_Transformer/CogVideoX-Fun-2b-InP"
-export DATASET_NAME="datasets/internal_datasets/"
-export DATASET_META_NAME="datasets/internal_datasets/metadata.json"
+export MODEL_NAME="models/Diffusion_Transformer/CogVideoX-Fun-5b-InP"
+export DATASET_NAME="datasets/"
+export DATASET_META_NAME="datasets/calvin/metadata.json"
 export NCCL_IB_DISABLE=1
 export NCCL_P2P_DISABLE=1
 NCCL_DEBUG=INFO
@@ -10,17 +10,17 @@ accelerate launch --mixed_precision="bf16" scripts/train.py \
   --pretrained_model_name_or_path=$MODEL_NAME \
   --train_data_dir=$DATASET_NAME \
   --train_data_meta=$DATASET_META_NAME \
-  --image_sample_size=1280 \
+  --image_sample_size=256 \
   --video_sample_size=256 \
-  --token_sample_size=512 \
-  --video_sample_stride=3 \
+  --token_sample_size=256 \
+  --video_sample_stride=1 \
   --video_sample_n_frames=49 \
-  --train_batch_size=1 \
+  --train_batch_size=4 \
   --video_repeat=1 \
   --gradient_accumulation_steps=1 \
-  --dataloader_num_workers=8 \
-  --num_train_epochs=100 \
-  --checkpointing_steps=50 \
+  --dataloader_num_workers=4 \
+  --num_train_epochs=10 \
+  --checkpointing_steps=100 \
   --learning_rate=2e-05 \
   --lr_scheduler="constant_with_warmup" \
   --lr_warmup_steps=100 \
@@ -39,4 +39,6 @@ accelerate launch --mixed_precision="bf16" scripts/train.py \
   --use_ema \
   --train_mode="inpaint" \
   --resume_from_checkpoint="latest" \
-  --trainable_modules "."
+  --trainable_modules "." \
+  --report_to "wandb" \
+  --tracker_project_name "cog"

@@ -30,12 +30,12 @@ model_name          = "models/Diffusion_Transformer/CogVideoX-Fun-2b-InP"
 sampler_name        = "DDIM_Origin"
 
 # Load pretrained model if need
-transformer_path    = None 
+transformer_path    = "output_dir/checkpoint-10700/transformer_ema/diffusion_pytorch_model.safetensors" 
 vae_path            = None
 lora_path           = None
 
 # Other params
-sample_size         = [384, 672]
+sample_size         = [256, 256]
 video_length        = 49
 fps                 = 8
 
@@ -47,12 +47,12 @@ overlap_video_length = 4
 # ome graphics cards, such as v100, 2080ti, do not support torch.bfloat16
 weight_dtype            = torch.bfloat16
 # If you want to generate from text, please set the validation_image_start = None and validation_image_end = None
-validation_image_start  = "asset/1.png"
+validation_image_start  = "close_the_drawer.jpg"
 validation_image_end    = None
 
 # prompts
-prompt                  = "The dog is shaking head. The video is of high quality, and the view is very clear. High quality, masterpiece, best quality, highres, ultra-detailed, fantastic."
-negative_prompt         = "The video is not of a high quality, it has a low resolution. Watermark present in each frame. Strange motion trajectory. "
+prompt                  = "Pick the red block. The video conforms to the laws of physics. The video is of high quality, and the view is very clear. High quality, masterpiece, best quality, highres, ultra-detailed, fantastic."
+negative_prompt         = "The video doesn't fit the laws of physics. The video is not of a high quality, it has a low resolution. Watermark present in each frame. Strange motion trajectory. "
 guidance_scale          = 6.0
 seed                    = 43
 num_inference_steps     = 50
