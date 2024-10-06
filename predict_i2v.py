@@ -24,7 +24,7 @@ from cogvideox.utils.utils import get_image_to_video_latent, save_videos_grid
 low_gpu_memory_mode = False
 
 # Config and model path
-model_name          = "models/Diffusion_Transformer/CogVideoX-Fun-2b-InP"
+model_name          = "models/Diffusion_Transformer/CogVideoX-Fun-V1.1-2b-InP"
 
 # Choose the sampler in "Euler" "Euler A" "DPM++" "PNDM" "DDIM_Cog" and "DDIM_Origin"
 sampler_name        = "DDIM_Origin"
@@ -160,7 +160,7 @@ if partial_video_length is not None:
         
         with torch.no_grad():
             sample = pipeline(
-                prompt + ". The video is of high quality, and the view is very clear. High quality, masterpiece, best quality, highres, ultra-detailed, fantastic. ", 
+                prompt, 
                 num_frames = _partial_video_length,
                 negative_prompt = negative_prompt,
                 height      = sample_size[0],
